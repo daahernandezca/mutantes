@@ -1,5 +1,6 @@
 package com.mutantes.app.database;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -20,20 +21,19 @@ import com.amazonaws.services.dynamodbv2.model.Condition;
 import com.amazonaws.services.dynamodbv2.model.QueryRequest;
 import com.amazonaws.services.dynamodbv2.model.QueryResult;
 import com.amazonaws.services.dynamodbv2.model.Select;
-import java.util.UUID;
 import com.mutantes.app.entities.Dna;
 
 @Repository
 public class DnaRepository {
 
-	BasicAWSCredentials creds = new BasicAWSCredentials("AKIA6KJTOXAAHB5QTN6J", "HcDqhKnmYh4Jhk9RjxejM1hmFjIivc/J6zHb5xMV");
+	BasicAWSCredentials creds = new BasicAWSCredentials("", "");
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 		    .withRegion("us-east-2")
 		    .withCredentials(new AWSStaticCredentialsProvider(creds))
 		    .build();
 	DynamoDB dynamoDb = new DynamoDB(client);
 	
-	public Object getRatio() throws Exception{
+	public JSONObject getRatio() throws Exception{
 		
 		// traer no mutantes
 		Integer falseInt = 0;
@@ -53,7 +53,7 @@ public class DnaRepository {
 		
 		int countFalse = resultFalse.getCount();
 		
-		System.out.println(countFalse);
+		//System.out.println(countFalse);
 		
 		// traer mutantes
 		Integer trueInt = 1;
@@ -72,9 +72,14 @@ public class DnaRepository {
 		
 		int countTrue = resultTrue.getCount();
 		
-		System.out.println(countTrue);
+		//System.out.println(countTrue);
 		
-		return null;
+		JSONObject obj = new JSONObject();
+		obj.put("count_mutant_dna", countTrue);
+		obj.put("count_human_dna", countFalse);
+		obj.put("ratio", (countTrue/countFalse));
+		
+		return obj;
 	}
 	
 	

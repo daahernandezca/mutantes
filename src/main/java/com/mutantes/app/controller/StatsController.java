@@ -1,6 +1,7 @@
 package com.mutantes.app.controller;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ public class StatsController {
 	public ResponseEntity<?> getStats(){
 		
 		try {
-			repository.getRatio();
-			return ResponseEntity.status(HttpStatus.OK).body(null);
+			JSONObject obj = repository.getRatio();
+			return ResponseEntity.status(HttpStatus.OK).body(obj);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 		}

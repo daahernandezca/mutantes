@@ -96,7 +96,7 @@ public class Dna {
 		System.out.println(height+width-1+" : "+widthDiag);
 		int i,j;
 		int diagonalCount = 0;
-		System.out.println("Desde fila");
+		//System.out.println("Desde fila");
 		for(int k=0; k<height; k++) {
 			i=k;
 			j=0;
@@ -114,7 +114,7 @@ public class Dna {
 				j=j+1;
 			}
 		}
-		System.out.println("Desde columna");
+		//System.out.println("Desde columna");
 		for(int k=1; k<width; k++) {
 			i=height-1;
 			j=k;
@@ -132,7 +132,7 @@ public class Dna {
 				j=j+1;
 			}
 		}
-		printMarix(diagonals);
+		//printMarix(diagonals);
 		
 		return diagonals;
 	}
