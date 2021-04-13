@@ -90,7 +90,7 @@ public class Dna {
 	}
 	
 	// help methods
-	public char[][] getDiagonalUp(char[][] matrix){
+	private char[][] getDiagonalUp(char[][] matrix){
 		int widthDiag = ((width>height) ? height: width);
 		char[][] diagonals = new char[height+width-1][widthDiag+1];
 		System.out.println(height+width-1+" : "+widthDiag);
@@ -137,7 +137,7 @@ public class Dna {
 		return diagonals;
 	}
 	
-	public char[][] getDiagonalDown( char[][] matrix){
+	private char[][] getDiagonalDown( char[][] matrix){
 		char[][] rotate = rotateMatrix(matrix);
 		//printMarix(rotate);
 		char[][] diagonals = getDiagonalUp(rotate);

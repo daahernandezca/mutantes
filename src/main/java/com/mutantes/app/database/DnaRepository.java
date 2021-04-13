@@ -26,7 +26,7 @@ import com.mutantes.app.entities.Dna;
 @Repository
 public class DnaRepository {
 
-	BasicAWSCredentials creds = new BasicAWSCredentials("", "");
+	BasicAWSCredentials creds = new BasicAWSCredentials("AKIA6KJTOXAAHB5QTN6J", "HcDqhKnmYh4Jhk9RjxejM1hmFjIivc/J6zHb5xMV");
 	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 		    .withRegion("us-east-2")
 		    .withCredentials(new AWSStaticCredentialsProvider(creds))
