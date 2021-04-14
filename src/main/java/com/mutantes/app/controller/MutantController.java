@@ -8,14 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.simple.parser.JSONParser;
+
+import java.sql.SQLException;
+
 import org.json.simple.JSONArray;
 
+import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.mutantes.app.database.DnaRepository;
 import com.mutantes.app.entities.Dna;
 
 @RestController
 @RequestMapping("/mutant")
-public class MuntantController {
+public class MutantController {
 
 	@Autowired
 	private DnaRepository repository;
@@ -41,9 +45,11 @@ public class MuntantController {
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 			}
 			
+		} catch (AmazonDynamoDBException e) {
+			return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).body(e);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
-		}
+		} 
 		
 	}
 }

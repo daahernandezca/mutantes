@@ -3,6 +3,10 @@ package com.mutantes.app.entities;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mutantes.app.database.DnaRepository;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DnaTest {
 
+	@Autowired
+	private DnaRepository dnaRepository;
+	
 	@Test
     @DisplayName("Should create dna")
     public void shouldCreatedna() throws Exception {

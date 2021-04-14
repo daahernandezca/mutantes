@@ -3,6 +3,7 @@ package com.mutantes.app.database;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.PutItemOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.model.AmazonDynamoDBException;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
 import com.amazonaws.services.dynamodbv2.model.Condition;
@@ -33,7 +35,7 @@ public class DnaRepository {
 		    .build();
 	DynamoDB dynamoDb = new DynamoDB(client);
 	
-	public JSONObject getRatio() throws Exception{
+	public JSONObject getRatio() throws AmazonDynamoDBException{
 		
 		// traer no mutantes
 		Integer falseInt = 0;
@@ -77,20 +79,20 @@ public class DnaRepository {
 		JSONObject obj = new JSONObject();
 		obj.put("count_mutant_dna", countTrue);
 		obj.put("count_human_dna", countFalse);
-		obj.put("ratio", (countTrue/countFalse));
+		if(countFalse==0)throw new ArithmeticException();
+		obj.put("ratio", (float)((float)countTrue/(float)countFalse));
 		
 		return obj;
 	}
 	
 	
-	public void addDna(Dna dna) throws Exception{ 
+	public void addDna(Dna dna) throws AmazonDynamoDBException{ 
+		
 		Table table = dynamoDb.getTable("dna");
 		Integer mutantInt = dna.getMutant() ? 1 : 0;
-		PutItemOutcome outcome = table.putItem(
+		table.putItem(
 		new Item().withPrimaryKey("dna_id", dna.getDna_id())
 				  .with("mutant", mutantInt ) ) ;
 
-		if (!Objects.nonNull(outcome))
-			throw new Exception("Error gardando dna");
 	}
 }

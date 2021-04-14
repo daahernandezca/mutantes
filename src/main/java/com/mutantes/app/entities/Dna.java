@@ -93,7 +93,7 @@ public class Dna {
 	private char[][] getDiagonalUp(char[][] matrix){
 		int widthDiag = ((width>height) ? height: width);
 		char[][] diagonals = new char[height+width-1][widthDiag+1];
-		System.out.println(height+width-1+" : "+widthDiag);
+		//System.out.println(height+width-1+" : "+widthDiag);
 		int i,j;
 		int diagonalCount = 0;
 		//System.out.println("Desde fila");
@@ -198,7 +198,7 @@ public class Dna {
 				}
 				if(countNucleos==maxSeqNucleos) {
 					mutations++;
-					System.out.println("Mutacion Encotrada Horizontal "+mutations+" : "+actualNucleo);
+					//System.out.println("Mutacion Encotrada Horizontal "+mutations+" : "+actualNucleo);
 					if(mutations>=maxSeqMutant) return mutant;
 				}
 				lastNucleo = actualNucleo;
@@ -216,7 +216,7 @@ public class Dna {
 				}
 				if(countNucleos==maxSeqNucleos) {
 					mutations++;
-					System.out.println("Mutacion Encotrada Vertical "+mutations+" : "+actualNucleo);
+					//System.out.println("Mutacion Encotrada Vertical "+mutations+" : "+actualNucleo);
 					if(mutations>=maxSeqMutant) return mutant;
 				}
 				lastNucleo = actualNucleo;
@@ -235,7 +235,7 @@ public class Dna {
 				}
 				if(countNucleos==maxSeqNucleos && actualNucleo!='\u0000') {
 					mutations++;
-					System.out.println("Mutacion Encotrada Diagonal Arriba "+mutations+" : "+actualNucleo);
+					//System.out.println("Mutacion Encotrada Diagonal Arriba "+mutations+" : "+actualNucleo);
 					if(mutations>=maxSeqMutant) return mutant;
 				}
 				lastNucleo = actualNucleo;
@@ -254,7 +254,7 @@ public class Dna {
 				}
 				if(countNucleos==maxSeqNucleos && actualNucleo!='\u0000') {
 					mutations++;
-					System.out.println("Mutacion Encotrada Diagonal Abajo "+mutations+" : "+actualNucleo);
+					//System.out.println("Mutacion Encotrada Diagonal Abajo "+mutations+" : "+actualNucleo);
 					if(mutations>=maxSeqMutant) return mutant;
 				}
 				lastNucleo = actualNucleo;

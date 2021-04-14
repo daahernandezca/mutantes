@@ -1,21 +1,19 @@
 package com.mutantes.app.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
 
+class InitControllerTest {
 
-public class InitControllerTest{
-
-	@Autowired
-	InitController initController;
-	
+	private InitController initController = new InitController(); 
 	
 	@Test
-    @DisplayName("Test Spring @Autowired Integration")
-    public void testGet() {
-        assertEquals("Hello JUnit 5", initController.init());
-    }
+	@DisplayName("Should create dna")
+	void checkInitialTest() {
+		String hello = initController.init();		
+		assertEquals("This a api for mercado libre Test", hello);
+	}
+
 }
