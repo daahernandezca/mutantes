@@ -57,11 +57,11 @@ Las URL expuestas son :
 
 El API tiene tres llamados que se describen a continuación:
 
--
+- /:
  ```
 GET / ---> This a api for mercado libre Test
  ```
-- 
+- mutant/:
  ``` 
 POST /mutant {
       "dna":["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
@@ -69,7 +69,7 @@ POST /mutant {
  ```
  A lo que responde un 200 si el ADN es mutante y 403 si no lo es.
  
- -
+ - stats/:
   ``` 
 GET /stats ---> {"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4}
  ```
@@ -106,7 +106,7 @@ GET /stats ---> {"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4}
   
  ## Arquitectura
  
-  ![alt text](https://github.com/daahernandezca/mutantes/blob/main/resources/arquitectura.jpg?raw=true)
+  ![alt text](https://github.com/daahernandezca/mutantes/blob/main/resources/aquitectura.jpg?raw=true)
   
   Como se ve en la figura se desarrollo en Eclipse IDE con el framework Spring Boot progrmando el API con conexión a DynamoDB. Lo que se dockerizo y se armo una red con docker compose de un balanceador de carga con caddy y 3 instancias del docker de la API para mejorar el rendimiento en las pruebas de carga que se realizaron con JMeter. 
  
