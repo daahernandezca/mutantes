@@ -1,5 +1,5 @@
 # Mutantes para X-men
-Magneto se encuentra en busca de mutantes para su equipo de X-men para lo cual requiere un API donde pueda mandar la sequencia del ADN del individuo a analizar y el API responda si el sujeto puede ingresar a su equipo.
+Magneto se encuentra en busca de mutantes para su equipo de X-men para lo cual requiere un API donde pueda mandar la secuencia del ADN del individuo a analizar y el API responda si el sujeto puede ingresar a su equipo.
 
 ## Indice
 1. Tecnologías
@@ -12,7 +12,7 @@ Magneto se encuentra en busca de mutantes para su equipo de X-men para lo cual r
 6. Arquitectura
 
 ## Tecnologías
-El API de magneto requirio las siguientes tecnologías:
+El API de magneto requirió las siguientes tecnologías:
 - Java 11.0.10
 - Spring Boot 4
 - Junit 5.7.1
@@ -25,31 +25,31 @@ El API de magneto requirio las siguientes tecnologías:
 
 ### Instalación
 
-El API de mutante fue constuido bajo tecnologia de Java y Spring, pero se dockerizo para la facilidad de implementación de los técnicos X-men.
+El API de mutante fue construido bajo tecnología de Java y Spring, pero se dockerizo para la facilidad de implementación de los técnicos X-men.
 
-- Para ejecutar una sola instancia de la API ejecute el siguiente codigo:
+- Para ejecutar una sola instancia de la API ejecute el siguiente código:
 
 ```
   docker pull daahernandezca/mutantes:latest
   docker run -d -p 80:8080 daahernandezca/mutantes 
 ```
- En este caso el API se expondra mediante un llamado normal de HTTP, por el puerto por defecto (80).
+ En este caso el API se expondrá mediante un llamado normal de HTTP, por el puerto por defecto (80).
  
  
- - Para ejecutar tres instancias del API junto con un balanceador de cargas administrado por Caddy2, ejecute predente en el yml de configuración del docker-compose: 
+ - Para ejecutar tres instancias del API junto con un balanceador de cargas administrado por Caddy2, ejecute archivo el yml de configuración del docker-compose: 
  
  ```
   cd mutantes
   docker-compose pull
   docker-compose up -d && docker-compose scale mutantes=3 
 ```
-Al lado del archivo de yml debe ir tambien el archivo de configuración del Caddy2(Caddyfile).
+Al lado del archivo de yml debe ir también el archivo de configuración del Caddy2 (Caddyfile).
 
 ### Servidor
 
-Para la prueba y puesta a punto del API de magneto se escogio los servicios en la nube de AWS asi como su base de datos. En AWS se creo un instancia con un sistema operativo CENTOS y se siguio el procedimiento anterior para la instalación con tres servicios y un balanceador de carga.
+Para la prueba y puesta a punto del API de magneto se escogió los servicios en la nube de AWS así como su base de datos. En AWS se creó un instancia con un sistema operativo CENTOS y se siguió el procedimiento anterior para la instalación con tres servicios y un balanceador de carga.
 
-Las URL expuestas son :
+Las URL expuestas son:
 - https://mutantes20ml615438153.online/
 - http://mutantes20ml615438153.online/
 
@@ -82,13 +82,13 @@ GET /stats ---> {"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4}
  
  ## Algoritmo
 
- El algortimo que busca los nucleotidos en el adn se descompone 4 fases como se ve en la figura. 
+ El algoritmo que busca los nucleótidos en el ADN se descompone 4 fases como se ve en la figura. 
  
  ![alt text](https://github.com/daahernandezca/mutantes/blob/main/resources/algoritmo.jpg?raw=true)
  
- Donde el algoritmo empieza a ver las repeticiones horizontales y luego la verticales. Luego un algoritmo que saca las diagonales hacia arriba se corre y se evalua las repeticiones. Para las otras diagonales se rota la matriz se utiliza el mismo método que la diagonal anterior y se evaluan repeticiones.
+ Donde el algoritmo empieza a ver las repeticiones horizontales y luego la verticales. Luego un algoritmo que saca las diagonales hacia arriba se corre y se evalúa las repeticiones. Para las otras diagonales se rota la matriz se utiliza el mismo método que la diagonal anterior y se evalúan repeticiones.
  
- La matriz que saca la diagonal entrag la matriz en la siguiente forma : (donde se puede verificar facilmente las repeticiones)
+ La matriz que saca la diagonal entrega la matriz en la siguiente forma: (donde se puede verificar fácilmente las repeticiones)
  
  ```
  T
@@ -108,6 +108,6 @@ GET /stats ---> {"count_mutant_dna":40, "count_human_dna":100: "ratio":0.4}
  
   ![alt text](https://github.com/daahernandezca/mutantes/blob/main/resources/aquitectura.jpg?raw=true)
   
-  Como se ve en la figura se desarrollo en Eclipse IDE con el framework Spring Boot progrmando el API con conexión a DynamoDB. Lo que se dockerizo y se armo una red con docker compose de un balanceador de carga con caddy y 3 instancias del docker de la API para mejorar el rendimiento en las pruebas de carga que se realizaron con JMeter. 
+  Como se ve en la figura se desarrolló en Eclipse IDE con el framework Spring Boot programando el API con conexión a DynamoDB. Lo que se dockerizo y se armó una red con docker-compose de un balanceador de carga con caddy y 3 instancias del docker de la API para mejorar el rendimiento en las pruebas de carga que se realizaron con JMeter. 
  
   
