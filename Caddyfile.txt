@@ -1,0 +1,8 @@
+# domain name
+mutantes20ml615438153.online:80 {
+ reverse_proxy mutantes:8080 mutantes:8081 mutantes:8082 
+}
+
+mutantes20ml615438153.online:443 {
+ reverse_proxy mutantes:8080 mutantes:8081 mutantes:8082
+}
